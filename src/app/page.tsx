@@ -1,6 +1,16 @@
+"use client"
+
+import { Button } from "@/components/ui/button"
+import { useTRPC } from "@/trpc/client"
+import { useMutation } from "@tanstack/react-query"
+
 const HomePage = () => {
+  const trpc = useTRPC()
+  const invoke = useMutation(trpc.invoke.mutationOptions({}))
   return (
-    <div>HomePage</div>
+    <div className="p-4 max-w-7xl mx-auto">
+      <Button onClick={() => invoke.mutate({ text: "jeje" })}>invoke job</Button>
+    </div>
   )
 }
 
